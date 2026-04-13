@@ -56,7 +56,7 @@ func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 	handler.ServeHTTP(responseRecorder, req)
 
 	// здесь нужно добавить необходимые проверки
-	answer := strings.Split(responseRecorder.Body.String(), " ")
+	answer := strings.Split(responseRecorder.Body.String(), ", ")
 	assert.Equal(t, responseRecorder.Code, http.StatusOK)
 	assert.NotEmpty(t, responseRecorder.Body.String())
 	assert.Len(t, answer, totalCount)
@@ -69,7 +69,7 @@ func TestMainHandlerWhenCountLessThanTotal(t *testing.T) {
 	handler := http.HandlerFunc(mainHandle)
 	handler.ServeHTTP(responseRecorder, req)
 
-	answer := strings.Split(responseRecorder.Body.String(), " ")
+	answer := strings.Split(responseRecorder.Body.String(), ", ")
 	assert.Equal(t, responseRecorder.Code, http.StatusOK)
 	assert.NotEmpty(t, responseRecorder.Body.String())
 	assert.Len(t, answer, 2)
